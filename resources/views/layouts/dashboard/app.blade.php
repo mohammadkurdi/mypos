@@ -73,6 +73,26 @@
         </div>
       </li>
 
+
+        {{--<!-- Tasks: style can be found in dropdown.less -->--}}
+        <li class="dropdown tasks-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="far fa-flag"></i></a>
+            <ul class="dropdown-menu">
+                <li>
+                    {{--<!-- inner menu: contains the actual data -->--}}
+                    <ul class="menu">
+                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <li>
+                                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                    {{ $properties['native'] }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
