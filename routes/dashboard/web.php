@@ -6,6 +6,7 @@ Route::group(
 
             Route::get('/index', 'DashboardController@index')->name('index');
 
+            Route::resource('user', UserController::class);
         });
     });
 
