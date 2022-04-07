@@ -19,17 +19,11 @@ class UserController extends Controller
 
     public function create()
     {
-        //
+        return view('dashboard.users.create');
     }
 
 
     public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show(User $user)
     {
         //
     }
