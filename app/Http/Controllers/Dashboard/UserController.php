@@ -30,8 +30,10 @@ class UserController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'password' => bcrypt($request->last_name),
+            'password' => bcrypt($request->password),
         ]);
+        $user->attachRole('admin');
+        $user->syncPermissions($request->permissions);
         session()->flash('success','user added successfully');
         return redirect()->route('dashboard.users.index');
     }

@@ -237,6 +237,7 @@
               </p>
             </a>
           </li>
+          @if (auth()->user()->hasPermission('users-read'))
           <li class="nav-item">
             <a href="{{route('dashboard.users.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -245,6 +246,7 @@
               </p>
             </a>
           </li>
+          @endif
           
         </ul>
       </nav>
