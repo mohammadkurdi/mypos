@@ -12,7 +12,9 @@
                 <div class="card-tools">
                   <div class="row">
                     <div class="col-md-4">
+                      @if (auth()->user()->hasPermission('users-create'))
                       <a href="{{route('dashboard.users.create')}}"><button type="button" class="btn btn-block btn-success btn-sm">Create</button></a>
+                      @endif
                     </div>
 
                     <div class="col-md-4">
@@ -55,8 +57,16 @@
                               <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <div class="dropdown-menu" role="menu">
-                              <a class="dropdown-item" href="#">edit</a>
+                              @if (auth()->user()->hasPermission('users-update'))
+                              <a class="dropdown-item" href="{{route('dashboard.users.edit',$user->id)}}">Edit</a>
+                              @else
+                              <a class="dropdown-item disabled">Edit</a>
+                              @endif
+                              @if (auth()->user()->hasPermission('users-delete'))
                               <a class="dropdown-item" href="#">Delete</a>
+                              @else
+                              <a class="dropdown-item disabled">Delete</a>
+                              @endif
                             </div>
                           </div>
                         </td>

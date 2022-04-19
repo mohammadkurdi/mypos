@@ -38,7 +38,8 @@
 
               <!-- /.card-body -->
               @php
-                  $models = ['users', 'categories', 'products']
+                  $models = ['users', 'categories', 'products'];
+                  $maps = ['create', 'read', 'update', 'delete'];
               @endphp
 
               
@@ -56,22 +57,11 @@
                   <div class="tab-content" id="custom-tabs-three-tabContent">
                     @foreach ($models as $index=>$model)
                     <div class="tab-pane {{$index == 0 ? 'active': ''}}" id="{{$model}}">
-                      <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="Add" value="{{$model}}-create" name="permissions[]">
-                        <label for="Add" class="custom-control-label">Add</label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="View" value="{{$model}}-read" name="permissions[]">
-                        <label for="View" class="custom-control-label">View</label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="Edit" value="{{$model}}-update" name="permissions[]"> 
-                        <label for="Edit" class="custom-control-label">Edit</label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="Delete" value="{{$model}}-delete" name="permissions[]">
-                        <label for="Delete" class="custom-control-label">Delete</label>
-                      </div>
+                      @foreach ($maps as $map)
+                        <div class="custom-control custom-checkbox">
+                          <label><input  type="checkbox"  name="permissions[]" value="{{$model . '-' . $map}}">  {{$map}}</label>
+                        </div>
+                      @endforeach
                     </div>
                     @endforeach
                   </div>

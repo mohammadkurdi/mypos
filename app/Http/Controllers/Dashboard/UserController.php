@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Users\StoreUserRequest;
+use App\Http\Requests\Users\UpdateUserRequest;
+
 
 class UserController extends Controller
 {
@@ -41,13 +43,18 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        //
+        return view('dashboard.users.edit', compact('user'));
     }
 
 
     public function update(Request $request, User $user)
     {
-        //
+        $request_data = $request->except(['permissions']);
+        $user->update($request_data);
+        $user->syncPermissions($request->permissions);
+        session()->flash('success','user updated successfully');
+        return redirect()->route('dashboard.users.index');
+
     }
 
 
